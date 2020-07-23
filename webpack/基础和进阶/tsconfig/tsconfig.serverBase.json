@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "charset": "utf8",
+    "pretty": true,
+    "baseUrl": ".",
+    "paths": {
+      "@types/*": ["./typings/*"],
+      "@*": ["./src"]
+    },
+
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ],
+
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "noEmitOnError": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "inlineSourceMap": true,
+    "importHelpers": true
+  },
+  "exclude": [
+    "app/public",
+    "node_modules*"
+  ]
+}

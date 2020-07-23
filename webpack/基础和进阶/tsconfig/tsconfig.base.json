@@ -1,0 +1,73 @@
+{
+  "compilerOptions": {
+    // --- 代码规范类 ---
+    // 启用严格类型
+    "strict": true,
+    // 允许使用装饰器
+    "experimentalDecorators": true,
+    // 忽略所有的声明文件（ *.d.ts）的类型检查
+    "skipLibCheck": true,
+    // 不允许声明后不使用的变量
+    "noUnusedLocals": true,
+    // 不允许声明后不使用的参数
+    "noUnusedParameters": true,
+    // switch 要有 default
+    "noFallthroughCasesInSwitch": true,
+    // 禁止对同一个文件的不一致的引用
+    "forceConsistentCasingInFileNames": false,
+    // 在表达式和声明上有隐含的 any类型时报错。
+    "noImplicitAny": false,
+    // 非undefined属性，不需要在 constructor 里初始化
+    "strictPropertyInitialization": false,
+    // false: 可以将任意类型变量赋值为 null undefined
+    "strictNullChecks": true,
+
+    // --- 文件范围类 ---
+    // 要包含的类型声明文件路径列表
+    // 我们目前的声明均在 typings 里进行，所以默认此值
+    // 有了该声明当我们编写了自己的声明文件后，在使用时候不需要单独导入
+    // "typeRoots": [
+    //   "node_modules/@types",
+    //   "typings"
+    // ],
+
+    // --- 通用配置类 ---
+    // 为 import 和 import default 提供帮助程序
+    "esModuleInterop": true,
+    // 允许从没有设置默认导出的模块中默认导入
+    "allowSyntheticDefaultImports": true,
+    // 标记来指定使用哪种模块解析策略
+    // 若未指定，那么在使用了 module: AMD | System | ES2015 时的默认值为Classic
+    // 其它情况时则为Node
+    "moduleResolution": "node",
+    // 将每个文件作为单独的模块
+    "isolatedModules": true,
+    // 允许编译javascript文件
+    "allowJs": true,
+    // 输入文件的字符集。
+    "charset": "utf8",
+    // 忽略 库的默认声明文件的类型检查
+    "skipDefaultLibCheck": true,
+    // 生成单个sourcemaps文件
+    // "inlineSourceMap": true,
+    // 从 tslib 导入辅助工具函数
+    "importHelpers": true,
+    // 在 .tsx 文件里支持JSX
+    "jsx": "react",
+    // 基准目录
+    // 我们大部分项目的基准目录都是 src 所以默认次值
+    "baseUrl": "src",
+    // js 文件也可以报错
+    "checkJs": true,
+    // 引入 JSON
+    "resolveJsonModule": true,
+
+    // --- 错误处理类 ---
+    // 报错时不生成输出文件
+    "noEmitOnError": false,
+    // 存在执行不到的代码块时报错
+    "allowUnreachableCode": true,
+    // 不报告未使用的标签错误
+    "allowUnusedLabels": true
+  }
+}
