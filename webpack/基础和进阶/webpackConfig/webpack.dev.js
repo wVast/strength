@@ -2,6 +2,7 @@ const path = require('path')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -19,13 +20,31 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: 'ts-loader',
+        test: /\.tsx|\.ts$/,
+        use: ['ts-loader'],
       },
       {
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          'sass-loader',
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     plugins: () => {
+          //       require('autoprefixer')({
+          //         browser: ['last 2 version', '>1%', 'ios7'],
+          //       })
+          //     },
+          //   },
+          // },
+        ],
       },
     ],
   },
@@ -36,6 +55,7 @@ module.exports = {
       filename: 'index.html',
       chunks: ['index'],
     }),
+    new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
   ],
 

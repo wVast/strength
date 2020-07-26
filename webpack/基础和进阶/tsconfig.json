@@ -2,7 +2,7 @@
   "extends": "./tsconfig/tsconfig.base",
   "include": [
     "src/**/*",
-    "types/**/*.d.ts",
+    "typings",
     "node_modules/@msfe/react-mobile-scripts/public-config/types/**/*.d.ts"
   ],
   "compilerOptions": {
@@ -12,5 +12,6 @@
     "baseUrl": "src",
     "lib": ["dom", "dom.iterable", "esnext"]
   },
-  "exclude": ["node_modules", "src/autod/apis/*"]
+  "exclude": ["node_modules", "src/autod/apis/*"],
+  "typeRoots": ["node_modules/@types", "./typings"]
 }
