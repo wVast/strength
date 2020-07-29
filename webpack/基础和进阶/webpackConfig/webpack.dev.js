@@ -2,7 +2,7 @@ const path = require('path')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: 'development',
@@ -26,7 +26,12 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../dist'
+            },
+          },
           {
             loader: 'css-loader',
             options: {
@@ -34,29 +39,32 @@ module.exports = {
             },
           },
           'sass-loader',
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     plugins: () => {
-          //       require('autoprefixer')({
-          //         browser: ['last 2 version', '>1%', 'ios7'],
-          //       })
-          //     },
-          //   },
-          // },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => {
+                require('autoprefixer')({
+                  overrideBrowserslist: ['>1%', 'ios7'],
+                })
+              },
+            },
+          },
         ],
       },
     ],
   },
 
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../template/index.html'),
       filename: 'index.html',
       chunks: ['index'],
     }),
-    new MiniCssExtractPlugin(),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
   ],
 
   resolve: {
