@@ -1,11 +1,12 @@
 const path = require('path')
 
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const webpackConfig = {
-  mode: 'development',
+  mode: 'production',
 
   entry: {
     index: path.join(__dirname, '../src/index.tsx'),
@@ -63,20 +64,23 @@ const webpackConfig = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      minSize: 1,
+      minSize: 20,
       maxSize: 0,
       minChunks: 1,
       name: true,
       cacheGroups: {
-        test: /(react|react-dom)/,
-        name: 'vendors',
-        chunks: 'all',
-        minChunks: 2,
+        vendors: {
+          test: /(react|react-dom)/,
+          name: 'vendors',
+          chunks: 'all',
+          minChunks: 2,
+        },
       },
     },
   },
 
   plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
