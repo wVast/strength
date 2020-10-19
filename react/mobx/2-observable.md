@@ -20,7 +20,7 @@ observable([], {
 
 只有普通的对象可以转换成 observable object。
 
-如果对象用构造函数生成，可以在构造函数上使用 @observable，或者使用 extendObservable
+如果对象用构造函数生成，可以在构造函数上使用 @observable，或者使用 extend Observable
 
 ```javascript
 import { observable, autorun, action } from 'mobx'
