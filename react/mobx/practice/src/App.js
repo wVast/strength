@@ -1,14 +1,17 @@
-import React from 'react'
-import { observer } from 'mobx-react'
+import React, { useEffect } from 'react'
+import { observer, inject } from 'mobx-react'
 
-import store from './appStore'
+const App = (props) => {
+  const { AppStore } = props
+  let { total, price } = AppStore
 
-const App = () => {
-  const { price } = store
+  console.log(total)
 
-  console.log(price)
+  useEffect(() => {
+    price = 12
+  }, [])
 
-  return <div>test</div>
+  return <div>{price}</div>
 }
 
-export default observer(App)
+export default inject('AppStore')(observer(App))
