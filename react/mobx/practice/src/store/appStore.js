@@ -1,16 +1,15 @@
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 
 class AppStore {
-  @observable price = 2
-  @observable amount = 3
+  @observable price = 3333
 
-  constructor() {
-    this.price = 12
+  @action modifyNumber = (price) => {
+    this.price = price
   }
 
   get total() {
-    return this.price * this.amount
+    return this.price + 3
   }
 }
 
-export default new AppStore()
+export default AppStore

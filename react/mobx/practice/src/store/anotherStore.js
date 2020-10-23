@@ -10,4 +10,4 @@ class AnotherStore {
   }
 }
 
-export default new AnotherStore()
+export default AnotherStore
