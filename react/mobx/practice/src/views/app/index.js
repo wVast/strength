@@ -3,17 +3,17 @@ import { observer, inject } from 'mobx-react'
 
 const App = (props) => {
   const { appStore } = props
-  const { price, modifyNumber, total } = appStore
+  const { modifyNumber, total } = appStore
 
   console.log('total：', total)
 
   return (
     <div
       onClick={() => {
-        modifyNumber(price + 1)
+        modifyNumber(+new Date())
       }}
     >
-      {price}
+      {total}
     </div>
   )
 }
