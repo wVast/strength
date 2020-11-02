@@ -1,14 +1,38 @@
-import { observable, action } from 'mobx'
+import { observable, action, autorun } from 'mobx'
 
 class AppStore {
-  @observable price = 3333
+  @observable number = 3333
 
-  @action modifyNumber = (price) => {
-    this.price = price
+  constructor() {
+    autorun(() => {
+      console.log('a?')
+    })
+    autorun(() => {
+      console.log(this.number)
+    })
+    autorun(
+      () => {
+        console.log(this.number)
+        try {
+          throw Error('aaa')
+        } catch (e) {
+          console.log('catch', e)
+        }
+      },
+      {
+        onError: (err) => {
+          console.log(err)
+        },
+      }
+    )
   }
 
-  get total() {
-    return this.price + 3
+  @action changeNumber = (number) => {
+    this.number = number
+  }
+
+  get showNumber() {
+    return this.number + 3
   }
 }
 

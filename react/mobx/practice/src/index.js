@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import DevTools from 'mobx-react-devtools'
 import { configure } from 'mobx'
 import { Provider } from 'mobx-react'
 
@@ -14,7 +13,6 @@ configure({
 
 ReactDOM.render(
   <>
-    {/* <DevTools /> */}
     <Provider {...stores}>
       <App />
     </Provider>
