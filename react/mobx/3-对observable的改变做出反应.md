@@ -167,3 +167,31 @@ async function() {
 }
 
 ```
+
+# reaction
+
+autorun 的变种，当创建 store 的时候 reaction 不会直接运行。
+
+reaction 接受三个参数
+
+- 参数一
+  返回一个值，当这个值改变的时候执行第二个参数的函数
+
+- 参数二
+  一个函数，当参数一的函数返回值改变的时候自动执行，传入的参数是参数一的函数的返回值
+
+- 参数三
+  reaction 的配置项
+
+```javascript
+
+{
+  fireImmediately: false, // 是否在 store 创建的时候自动执行
+  delay: 300, // 防抖时间
+  equals: () => boolean, // 比较器，用来比较参数与返回的前一个值和后一个值。比较器返回 false 参数二函数才会被调用。
+  name: '',
+  onError: () => {}, // 捕获 reaction 的错误
+  scheduler: () => {}, // 自定义调度器，决定如何调度 autorun 函数的重新运行
+}
+
+```
