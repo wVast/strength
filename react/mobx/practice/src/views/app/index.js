@@ -3,15 +3,15 @@ import { observer, inject } from 'mobx-react'
 
 const App = (props) => {
   const { appStore } = props
-  const { changeNumber, showNumber } = appStore
+  const { changeNumber, showNumber, obj, changeNumberTwo } = appStore
 
   return (
     <div
       onClick={() => {
-        changeNumber(+new Date())
+        changeNumberTwo()
       }}
     >
-      {showNumber}
+      {obj.num}
     </div>
   )
 }

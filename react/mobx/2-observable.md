@@ -98,3 +98,38 @@ todos[2] = { title: 'test3', completed: false }
 - findIndex(predicate: (item, index, array) => boolean, thisArg?)：等同于 ES7 的 Array.findIndex
 - remove(value)：通过值从数组中移除一个单个的项。如果项被找到并移除的话，返回 true
 - observableArray.sort 和 observableArray.reverse 不会改变数组本身，而只是返回一个排序过/反转过的拷贝。在 MobX 5 及以上版本中会出现警告。推荐使用 array.slice().sort() 来替代。
+
+# 在 store 中不使用装饰器
+
+如果在 store 中我们不想使用装饰器，可以使用 decorate 来代替。
+
+```javascript
+import { observable, action, computed, decorate } from 'mobx'
+import persist from 'mobx-persist'
+
+class AppStore {
+  number = 3333
+  obj = { num: +new Date() }
+
+  changeNumber = (number) => {
+    this.number = number
+    // this.obj.num = number
+    setTimeout(() => {
+      runInAction(() => {
+        this.obj.num = number
+      })
+    }, 200)
+  }
+
+  showNumber() {
+    return this.number + 3
+  }
+}
+
+decorate(AppStore, {
+  number: observable,
+  obj: [persist('object'), observable], // 从右至左应用
+  changeNumber: action,
+  showNumber: computed,
+})
+```
