@@ -57,38 +57,51 @@ console.log(p.age) // 自定义结果
 proxy 主要是用 handler 代理了 target 上的原生方法。handler 本身就是 ES6 新设计的一个对象，用来自定义代理对象的各种可代理操作。handler 具有 13 种方法，每种方法可以代理一种操作。
 
 ```javascript
-// 在读取代理对象的某个属性的时候触发，比如 proxy.foo
+// 在读取代理对象的某个属性的时候触发
+// proxy.foo  proxy['foo']
 handler.get(target, propKey, receiver)
 
-// 在给代理对象属性赋值的时候触发，比如 proxy.foo = 1
+// 在给代理对象属性赋值的时候触发
+// proxy.foo = 1 proxy['foo'] = 1
 handler.set(target, propKey, value, receiver)
 
-// 判断代理对象是否有某个方法的时候触发，比如 'foo' in proxy
+// 判断代理对象是否有某个方法的时候触发
+// 'foo' in proxy
 handler.has(target, propKey)
+
+// 在删除代理对象的某个属性的时候触发
+// delete proxy.foo
+handler.deleteProperty()
+
+// 在获取代理对象所有属性 key 的时候触发，
+// 比如 Object.getOwnPropertyNames(proxy) 
+// Object.getOwnPropertySymols(proxy)
+// Object.keys(proxy)
+// for .. in ..
+handler.ownKeys()
+
+// 获取代理对象某个属性的属性描述时触发
+// Object.getOwnPropertyDescriptor(proxy, 'foo')
+handler.getOwnPropertyDescriptor()
+
+// 定义代理对象某个属性的属性描述时触发
+// Object.defineProperty(proxy, propKey, propDesc)
+// Obejct.defineProperties(proxy, propDescs)
+handler.defineProperty()
+
+// 判断一个对象代理是否可扩展时触发
+// Object.isExtensible(proxy)
+handler.isExtensible()
+
+// 设置代理对象原型时触发
+// Object.setProtypeOf(proxy, proto)
+handler.setPrototypeOf()
 
 // 读取代理对象原型时触发。比如 Object.getProtypeOf(proxy)
 handler.getPrototypeOf()
 
-// 设置代理对象原型时触发。比如 Object.setProtypeOf(proxy, null)
-handler.setPrototypeOf()
-
-// 判断一个对象代理是否可扩展时触发。比如 Object.isExtensible(proxy)
-handler.isExtensible()
-
 // 让代理对象不可扩展时触发，比如 Object.preventExtensions(proxy)
 handler.preventExtensions()
-
-// 获取代理对象某个属性的属性描述时触发，比如 Object.getOwnPropertyDescriptor(proxy, 'foo')
-handler.getOwnPropertyDescriptor()
-
-// 定义代理对象某个属性的属性描述时触发，比如 Object.defineProperty(proxy, 'foo')
-handler.defineProperty()
-
-// 在删除代理对象的某个属性的时候触发，比如 delete proxy.foo
-handler.deleteProperty()
-
-// 在获取代理对象所有属性 key 的时候触发，比如 Object.getOwnPropertyNames(proxy)
-handler.ownKeys()
 
 // 对象为函数代理对象，当其被调用的时候触发，比如 proxy
 handler.apply()
