@@ -13,6 +13,7 @@ const promise = new Promise(function(resolve, reject) {
 ```
 
 resolve  和  reject  的参数会传递给回调函数。
+
 ##  如果  resolve  的参数是  promise
 
 ```javascript
@@ -43,29 +44,25 @@ p2.then((result) => console.log(result)).catch((error) => console.log(error))
 ## promise  的  then
 1. then  的第一个参数是  resolve  时候的回调函数。第二个参数是  reject  状态的回调函数。
 2. then  返回的是一个新的  promise  实例。
-3. then  如果  return  的是一个  promise  后续的  then  会等待  promise  的执行
+3. then  如果  return  的是一个  promise，后续的  then  会等待  promise  的执行
+
 ## promise  的  catch
 promise  的  catch  可以既可以用来捕获  promise reject  抛出的错误，也可以捕获代码运行中的错误。
+
 catch  返回的同样是一个  promise  对象
+
 catch  实际上可以用  then(null, rejection)  或者  then(undefined, redection)来实现
 例如
 
 ```javascript
-// 写法1
-const promise = new Promise((resolve, reject) => {
-  try {
-    throw new Error('test')
-  } catch (e) {
-    reject(e)
-  }
-})
-// 写法2
-const promise = new Promise((resolve, reject) => {
-  reject(new Error('test'))
-})
-promise.catch((err) => {
-  console.log(error)
-})
+p.then((val) => console.log('fulfilled:', val)).catch((err) =>
+  console.log('rejected', err)
+)
+
+// 等同于
+p.then((val) => console.log('fulfilled:', val)).then(null, (err) =>
+  console.log('rejected:', err)
+)
 ```
 
 ### promise  错误特性
@@ -83,8 +80,11 @@ new Promise((resolve, reject) => {
 ```
 
 以上代码的  error  是在  resolve  之后产生的。所以  catch  已经无法捕获到错误了。
+
 ####  错误具有冒泡的特性
+
 错误会一直向后传递，最终被一个  catch  捕获为止。
+
 ####  如果没有  catch promise  对象抛出的错误不会传递到外层
 
 ```javascript
@@ -114,9 +114,13 @@ new Promise((res, jes) => {
 ```
 
 上面这段程序会先输出  ok  然后抛出错误。
+
 因为  setTimeout  将错误指定在了下一个时间循环中。此时  promise  的运行已经结束。所以相当于是在  promise  外抛出了错误。
+
 一般建议  promise  后面总是有个  catch  方法。
+
 # Promise.finally()
+
 不管  Promise  最后状态如何总会执行。于  ES2018  引入。
 finally  不接受任何参数。所以没有办法知道  promise  最终是  resolve  还是  reject。
 所以  finally  中处理的逻辑应该是和状态无关，不依赖  Promise  执行结果。
