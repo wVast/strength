@@ -74,7 +74,7 @@ handler.has(target, propKey)
 handler.deleteProperty()
 
 // 在获取代理对象所有属性 key 的时候触发，
-// 比如 Object.getOwnPropertyNames(proxy) 
+// 比如 Object.getOwnPropertyNames(proxy)
 // Object.getOwnPropertySymols(proxy)
 // Object.keys(proxy)
 // for .. in ..
@@ -108,6 +108,26 @@ handler.apply()
 
 // 对象为构造函数的代理对象构造实例的时候触发，比如 new _proxy()
 handler.construct()
+```
+
+## this 问题
+
+proxy 并不是透明代理，即使不做任何拦截也无法保证目标对象和原对象行为一致。
+
+主要原因是 proxy 代理下，目标对象内部的 this 会指向 proxy 代理。
+
+```javascript
+const target = {
+  m: function () {
+    console.log(this === proxy)
+  },
+}
+const handler = {}
+
+const proxy = new Proxy(target, handler)
+
+target.m() // flase
+proxy.m() // true
 ```
 
 # Proxy 作用
