@@ -1,3 +1,5 @@
+Object.defineProperty 是属性描述对象中的一个方法
+
 Object.defineProperty 可以修改或增加对象的属性
 
 ```javascript

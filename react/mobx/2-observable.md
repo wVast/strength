@@ -7,8 +7,9 @@ observable 用来将普通数据转换成为可以被监听的对象。
 ```javascript
 observable([], {
   deep: true,
-  // 禁用自动的 observable 转换，只是创建一个 observable 引用
+  // 禁用自动的 observable 转换
   ref: false,
+  // 只是创建一个 observable 引用
   shallow: false,
   struct: false,
 })
