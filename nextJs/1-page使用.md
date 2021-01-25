@@ -99,3 +99,5 @@ const Post = () => {
 ## 优先级
 
 预设路由 > 动态路由 > 所有路由|可选路由
+
+# 利用 page 生成 robots.txt 和 sitemap.xml
