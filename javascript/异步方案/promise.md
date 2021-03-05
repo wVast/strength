@@ -66,7 +66,7 @@ p.then((val) => console.log('fulfilled:', val)).then(null, (err) =>
 ```
 
 ### promise  错误特性
-#### promise  中在已经  resolve  后才抛出的错误不会被  catch  捕获
+#### promise  中在已经 resolve  后才抛出的错误不会被 catch 捕获
 
 ```javascript
 new Promise((resolve, reject) => {
@@ -211,6 +211,7 @@ Promise.all([p1, p2])
 基本属性和  promise all  一样
 **不同点**
 其中只要有一个  promise  改变状态，那么  promise race  的状态就会改变。
+
 # Promise.allSettled
 基本属性和  promise all  一样
 **不同点**
@@ -229,6 +230,7 @@ allSettled.then((res) => {
 ```
 
 有时候我们并不关心异步操作的结果，只关心这些操作是否已经结束，那么  allSettled  就会很实用。
+
 # Promise.any
 基本属性和  promise all  相同
 **不同点**
